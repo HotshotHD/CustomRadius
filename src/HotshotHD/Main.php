@@ -17,8 +17,13 @@ use pocketmine\utils\Config;
 
 class Main extends PluginBase implements Listener {
 	
+	private $cfg;
+	
 	public function onEnable() {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
+		"world" => 16
+		));
 		$this->getLogger()->info("is ready to go!");
 	}
 	
@@ -27,13 +32,10 @@ class Main extends PluginBase implements Listener {
 		$level = $player->getLevel();
 		$spawn = $level->getSpawnLocation();
 		$distance = $spawn->distance($player);
-		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
-		"world" => 16
-		));
 		
 		if($distance <= $this->cfg->get($level->getName())) {
 			if(!$player->isOp()) {
-			$event->setCancelled();
+			$event->setCancelled(true);
 			}
 		}
 	}
@@ -43,13 +45,10 @@ class Main extends PluginBase implements Listener {
 		$level = $player->getLevel();
 		$spawn = $level->getSpawnLocation();
 		$distance = $spawn->distance($player);
-		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
-		"world" => 16
-		));
 		
 		if($distance <= $this->cfg->get($level->getName())) {
 			if(!$player->isOp()) {
-			$event->setCancelled();
+			$event->setCancelled(true);
 			}
 		}
 	}
@@ -59,13 +58,10 @@ class Main extends PluginBase implements Listener {
 		$level = $player->getLevel();
 		$spawn = $level->getSpawnLocation();
 		$distance = $spawn->distance($player);
-		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
-		"world" => 16
-		));
 		
 		if($player instanceof Player) {
 		if($distance <= $this->cfg->get($level->getName())) {
-			$event->setCancelled();
+			$event->setCancelled(true);
 		}
 		}
 	}
