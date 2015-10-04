@@ -1,0 +1,6 @@
+name: CustomRadius
+main: HotshotHD\Main
+version: 1.0.0
+api: [1.12.0, 1.13.0]
+author: HotshotHD
+description: Set seperate spawn radius' for each world
