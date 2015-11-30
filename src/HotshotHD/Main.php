@@ -19,6 +19,7 @@ class Main extends PluginBase implements Listener {
 
 	public function onEnable() {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		@mkdir($this->getDataFolder());
 		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
 		"world" => 16
 		));
