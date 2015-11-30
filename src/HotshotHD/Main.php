@@ -16,9 +16,7 @@ use pocketmine\utils\Config;
 
 
 class Main extends PluginBase implements Listener {
-	
-	private $cfg;
-	
+
 	public function onEnable() {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
@@ -34,7 +32,7 @@ class Main extends PluginBase implements Listener {
 		$distance = $spawn->distance($player);
 		
 		if($distance <= $this->cfg->get($level->getName())) {
-			if(!$player->isOp()) {
+			if(!$player->hasPermission("customradius.edit")) {
 			$event->setCancelled(true);
 			}
 		}
@@ -47,7 +45,7 @@ class Main extends PluginBase implements Listener {
 		$distance = $spawn->distance($player);
 		
 		if($distance <= $this->cfg->get($level->getName())) {
-			if(!$player->isOp()) {
+			if(!$player->hasPermission("customradius.edit")) {
 			$event->setCancelled(true);
 			}
 		}
@@ -61,7 +59,9 @@ class Main extends PluginBase implements Listener {
 		
 		if($player instanceof Player) {
 		if($distance <= $this->cfg->get($level->getName())) {
+			if(!$player->hasPermission("customradius.pvp")) {
 			$event->setCancelled(true);
+			}
 		}
 		}
 	}
