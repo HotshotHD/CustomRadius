@@ -4,3 +4,11 @@ version: 1.0.0
 api: [1.12.0, 1.13.0]
 author: HotshotHD
 description: Set seperate spawn radius' for each world
+
+permissions:
+  customradius.pvp:
+    default: op
+    description: "Allows player to pvp within spawn radius"
+ customradius.edit:
+    default: op
+    description: "Allows player to edit land within spawn radius"
